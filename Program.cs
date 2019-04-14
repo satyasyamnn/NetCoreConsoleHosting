@@ -8,13 +8,13 @@ namespace ConsoleApplicationHosting
     class Program
     {
         static async Task Main(string[] args)
-        {
-            await new HostBuilder()
+        {   
+            var host = new HostBuilder()
                .ConfigureServices((hostContext, services) =>
                {
-                   services.AddHostedService<HostedService>();
-               })
-               .RunConsoleAsync();
+                   services.AddHostedService<FileWriterService>();
+               });  
+            await host.RunAsServiceAsync();
         }
     }
 }

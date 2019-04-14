@@ -9,6 +9,7 @@
 <https://stackoverflow.com/questions/54526534/net-core-console-app-fails-to-run-on-windows-server/>
 <https://thinkrethink.net/2018/05/31/run-scheduled-background-tasks-in-asp-net-core/>
 <https://github.com/pgroene/ASPNETCoreScheduler/>
+<https://www.stevejgordon.co.uk/running-net-core-generic-host-applications-as-a-windows-service/>
 
 ## deployment reference
 
@@ -16,6 +17,13 @@
 <https://github.com/aspnet/AspNetCore.Docs/blob/master/aspnetcore/host-and-deploy/windows-service/scripts/2.x/RegisterService.ps1/>
 <https://github.com/PowerShell/PowerShell/>
 
-## command to use to register service
+## Reference to build .net core application and use it as windows service
 
+<https://github.com/stevejgordon/IHostedServiceAsAService/>
+
+## command to build and register service
+
+dotnet publish --configuration Release --runtime win10-x64 --output c:\svc
 .\RegisterService.ps1 -Name MyService -DisplayName "My Cool Service" -Description "This is the Sample App service."  -Exe "c:\svc\ConsoleApplicationHosting.exe" -User ManjushaShyam\ServiceUser
+
+sc create MyService binPath= "c:\svc\ConsoleApplicationHosting.exe"
